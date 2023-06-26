@@ -1,5 +1,5 @@
 # 相册系统：Immich
-![](/media/202303/2023-03-10_144508_3513900.2734386854731311.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Media/img/Immich-1.png)
 > 项目地址：https://github.com/immich-app/immich
 
 ## 简介
