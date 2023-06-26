@@ -1,4 +1,4 @@
-# cadvisor
+# Cadvisor
 
 ## 简介
 为了解决 `docker stats` 的问题(存储、展示)，谷歌开源的 `cadvisor` 诞生了。
