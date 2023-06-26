@@ -63,4 +63,4 @@ New clients can be added by running this script again.
 下载客户端后，导入以上的 `abc.ovpn` 文件后即可。
 
 
-![](/media/202306/2023-06-13_132000_5357670.6487410347898129.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Network/img/OpenVPN-1.png)
