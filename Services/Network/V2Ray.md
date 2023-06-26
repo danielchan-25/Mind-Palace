@@ -25,7 +25,7 @@
 ```
 可以从 Windows 客户端中，导出已有的配置文件，然后导入
 
-![](/media/202305/2023-05-24_175339_1961160.46400390987039086.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Network/img/V2Ray-1.png)
 
 ```sh
 # 启动，可以通过 -c 指定配置文件
