@@ -124,7 +124,7 @@ git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 > 1.4版本：https://huggingface.co/CompVis/stable-diffusion-v-1-4-original/tree/main
 > 1.5版本：https://huggingface.co/runwayml/stable-diffusion-v1-5
 
-![](/media/202304/2023-04-14_115650_4876880.5049503685705369.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/stablediffusionwebui-1.png)
 
 下载完成后，存放在 `stable-diffusion-webui/models` 下。
 
@@ -134,7 +134,7 @@ git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 存放在 `stable-diffusion-webui/` 下。
 > https://github.com/TencentARC/GFPGAN
 
-![](/media/202304/2023-04-14_115750_9715130.049683361560598494.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/stablediffusionwebui-2.png)
 
 环境已全部准备完毕，可以启动程序。
 
@@ -196,7 +196,7 @@ python launch.py --nowebui
 
 在 Stable Diffusion web UI 中，扩展在以下图中添加：
 
-![](/media/202305/2023-05-25_175557_8498530.5362265829031858.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/stablediffusionwebui-3.png)
 
 但因国内网络环境问题，经常无法加载，那就可以使用其它操作。
 
@@ -212,18 +212,17 @@ python launch.py --nowebui
 `Clip Skip`
 - early stopping parameter for CLIP model，1是保持不变，最后一层才停止。
 如何设置：[Setting]-->[stable diffusion]-->[clip skip]
-![](/media/202305/2023-05-31_140552_7496890.19709537152937462.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/stablediffusionwebui-4.png)
 
 `ENSD`
 - 全称是：`Eta noise seed delta`，
-![](/media/202305/2023-05-31_140612_2591980.19964868327480234.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/stablediffusionwebui-5.png)
 
 ## 命令行生成图像
 ```sh
 python scripts/txt2img.py --prompt "a close-up portrait of a cat by pablo picasso, vivid, abstract art, colorful, vibrant" --plms --n_iter 5 --n_samples 1
 
 生成成功后，图像存放在 `outputs/
-
 ```
 
 # 导入 Lora
