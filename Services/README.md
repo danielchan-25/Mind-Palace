@@ -6,9 +6,11 @@
 
 > 一些好玩的 Ai 项目
 
+- DragGAN
 - LaWGPT
 - Roop
 - Stable Diffusion web UI
+- Whisper
 
 ## Automation
 

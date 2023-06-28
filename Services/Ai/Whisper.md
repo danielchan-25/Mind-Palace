@@ -40,3 +40,17 @@ pip install git+https://github.com/openai/whisper.git
 以下是我在网上采摘一段文字，转成mp3文件后，再使用 `Whisper` 转回中文的真实测试：
 
 ![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/whisper-1.png)
+
+
+
+---
+
+2023/06/28 更新
+
+> 新增测试：短文本 & 长文本 的生成时间，以及错别字
+>
+> 显卡型号：RTX 2060
+
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/whisper-shorttext.png)
+
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/whisper-longtext.png)
