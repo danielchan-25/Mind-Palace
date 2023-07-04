@@ -37,7 +37,7 @@ lama-cleaner --model=lama --device=cuda --host=0.0.0.0 --port=8080
 
 ## 测试
 
-简单测试了一下 `lama` 模型，使用了来自百度图片中的一张图片，尝试将其中的人物抹去，以下是前后对比图：
+简单测试了一下 `lama` 模型，使用了来自百度图片中的广州地铁，尝试将其中的部分抹去，以下是前后对比图：
 
 ![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/lama_cleaner-2.png)
 
