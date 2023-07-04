@@ -41,3 +41,6 @@ lama-cleaner --model=lama --device=cuda --host=0.0.0.0 --port=8080
 
 ![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/lama_cleaner-2.png)
 
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/lama_cleaner-3.png)
+
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/lama_cleaner-4.png)
