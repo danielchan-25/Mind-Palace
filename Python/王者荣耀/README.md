@@ -11,8 +11,8 @@
 ## 说明
 
 - `get_hero_image.py`：获取官网中所有英雄皮肤的高清壁纸
-
 - `get_hero_zhanli_daily.py`：每天定时获取指定英雄的最低战力地区/分数
+- `get_match_info.py`：获取最近的KPL赛事
 
 ![](https://github.com/danielchan-25/Mind-Palace/blob/main/Python/img/wzry_zhanli-1.png)
 
