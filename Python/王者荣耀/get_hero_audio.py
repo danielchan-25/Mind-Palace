@@ -1,10 +1,10 @@
 import requests
 import json
-# --------------------- #
+# ----------------------- #
 # 日期：2023年7月5日
 # 作者：cc
 # 功能：获取英雄的语音
-# --------------------- #
+# ----------------------- #
 url = 'https://pvp.qq.com/zlkdatasys/data_zlk_lb.json?callback=createList'
 headers = {
     'Accept-Language':'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
