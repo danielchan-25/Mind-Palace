@@ -14,6 +14,7 @@
 
 - `get_hero_image.py`：获取官网中所有英雄皮肤的高清壁纸
 - `get_hero_match_data.py`：获取 KPL 赛事中英雄的数据
+- `get_hero_victory_defeated_count.py`：获取 KPL 赛事中胜场/败场次数最多的英雄
 - `get_hero_zhanli_daily.py`：每天定时获取指定英雄的最低战力地区/分数
 - `get_match_city.py`：获取近期 KPL 赛事的比赛城市，以词云的方式展示
 - `get_match_info.py`：获取近期的 KPL 赛事
@@ -31,6 +32,10 @@
 ![](https://github.com/danielchan-25/Mind-Palace/blob/main/Python/img/wzry_match_hero_data-1.png)
 
 ![](https://github.com/danielchan-25/Mind-Palace/blob/main/Python/img/wzry_match_hero_data-2.png)
+
+### 获取 KPL 赛事中胜场/败场次数最多的英雄
+
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Python/img/wzry_match_hero_victory_defeated_count.png)
 
 ### 每天定时获取指定英雄的最低战力地区/分数
 
