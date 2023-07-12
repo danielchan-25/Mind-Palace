@@ -16,10 +16,8 @@ def find_max_victory_hero(csv_file):
 
     max_victory_count = 0
     max_defeated_count = 0
-    max_win_rate = float("0.0")
     victory_hero_name = ""
     defeated_hero_name = ""
-    win_rate_name = ""
 
     with open(f'赛事\\{csv_file}','r') as file:
         reader = csv.reader(file)
@@ -28,7 +26,6 @@ def find_max_victory_hero(csv_file):
             hero_name = row[0]
             victory_count = int(row[4])             # 胜场列
             defeated_count = int(row[5])            # 败场列
-            # win_rate = float(row[6])                # 英雄胜率
 
             if victory_count > max_victory_count:
                 max_victory_count = victory_count
