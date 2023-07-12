@@ -8,6 +8,20 @@
 
 Whisper系统所提供的自动语音辨识（Automatic Speech Recognition，ASR）模型是被训练来运行语音辨识与翻译任务的，它们能将各种语言的语音变成文本，也能将这些文本翻译成英文。
 
+### 运行模型以及所需配置
+
+目前 Whisper 有 9 种模型（分为纯英文和多语言），其中四种只有英文版本
+
+以下是现有模型的大小，及其内存要求和相对速度
+
+| 大小   | 参数   | 纯英文模型 | 多语言模型 | 所需显存 | 速度 |
+| ------ | ------ | ---------- | ---------- | -------- | ---- |
+| tiny   | 39 M   | tiny.en    | tiny       | ~1 GB    | ~32x |
+| base   | 74 M   | base.en    | base       | ~1 GB    | ~16x |
+| small  | 244 M  | small.en   | small      | ~2 GB    | ~6x  |
+| medium | 769 M  | medium.en  | medium     | ~5 GB    | ~2x  |
+| large  | 1550 M | N/A        | large      | ~10 GB   | 1x   |
+
 ## 部署
 
 > OS：Ubuntu 22.04.1 LTS
