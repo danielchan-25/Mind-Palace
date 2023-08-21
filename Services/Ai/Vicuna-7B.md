@@ -38,7 +38,7 @@ git lfs install
 git clone https://huggingface.co/lmsys/vicuna-7b-v1.3
 ```
 
-![](/media/202308/2023-08-18_110037_1711030.11880388936619857.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/vicuna-1.png)
 
 
 注意 `tokenizer.json` 文件的大小，经常下载不全导致出现奇奇怪怪的问题
@@ -80,6 +80,6 @@ python -m fastchat.serve.test_message --model-name vicuna-7b-v1.3
 python -m fastchat.serve.gradio_web_server --host 0.0.0.0 --port 8700 --share
 ```
 
-5. 网页访问：`localhost:7860`
+5. 网页访问：`localhost:7860`，在输入栏中提问即可。
 
-![](/media/202308/2023-08-18_111038_3852190.5652374995802424.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/vicuna-2.png)
