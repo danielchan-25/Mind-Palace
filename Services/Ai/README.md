@@ -9,6 +9,7 @@
 | Lama Cleaner            | 图片修复工具                               |
 | Roop                    | 视频换脸                                   |
 | Stable Diffusion web UI | 文字生成图片                               |
+| Vicuna-7B | 开源语言模型                               |
 | Whisper                 | 语音转换文字                               |
 
 
