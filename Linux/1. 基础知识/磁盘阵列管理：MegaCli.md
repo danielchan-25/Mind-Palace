@@ -1,5 +1,3 @@
-# 磁盘阵列管理：MegaCli
-
 > 下载地址：
 > http://www.lsi.com/downloads/Public/RAID%20Controllers/RAID%20Controllers%20Common%20Files/8.07.14_MegaCLI.zip
 > http://www.lsi.com/support/downloads/megaraid/miscellaneous/linux/Linux_MegaCLI_1.01.24.zip
