@@ -24,12 +24,12 @@ FFmpeg 安装后有三个命令：`ffmpeg` `ffplay` `ffprobe`
 
 # 2. 安装
 
-  ```sh
+  ```shell
   # MacOS
   brew install ffmpeg
   ```
 
-  ```sh
+  ```shell
   # Linux
   curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
   curl -o /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
@@ -50,7 +50,7 @@ FFmpeg 安装后有三个命令：`ffmpeg` `ffplay` `ffprobe`
 
   ## 3.1 ffmpeg
 
-  ```sh
+  ```shell
   ffmpeg 语法格式：
   ffmpeg \
     [global_options] \
@@ -63,7 +63,7 @@ FFmpeg 安装后有三个命令：`ffmpeg` `ffplay` `ffprobe`
 
   `scale` 滤镜用于缩放视频，`in_w` 和 `in_h` 代表输入的宽和高
 
-  ```sh
+  ```shell
   ffmpeg -y -i video.mp4 -vf "scale=2*in_w:2*in_h" output.mp4
   ```
 
@@ -80,20 +80,20 @@ FFmpeg 安装后有三个命令：`ffmpeg` `ffplay` `ffprobe`
 
 格式转换
 
-```sh
+```shell
 ffmpeg -i input.mp4 output.mov
 ffmpeg -i input.mp4 output.ts
 ```
 
 提取音频
 
-```sh
+```shell
 ffmpeg -i video.mp4 -vn music.mp3
 ```
 
 视频剪切
 
-```sh
+```shell
 # 下面的命令，可以从时间为00:00:15开始，截取5秒钟的视频。
 # -ss表示开始切割的时间，-t表示要切多少。上面就是从15秒开始，切5秒钟出来。
 ffmpeg -ss 00:00:15 -t 00:00:05 -i input.mp4 -vcodec copy -acodec copy output.mp4
@@ -101,14 +101,14 @@ ffmpeg -ss 00:00:15 -t 00:00:05 -i input.mp4 -vcodec copy -acodec copy output.mp
 
 视频压缩
 
-```sh
+```shell
 ffmpeg -i video.mp4 -c:v libx265 -x265-params crf=18 video1.mp4
 ffmpeg -i video.flv -vcodec h264 -acodec mp2 video1.mp4
 ```
 
 分辨率修改
 
-```sh
+```shell
 # 将输入的视频分辨率，缩小到 960x540 输出
 ffmpeg -i input.mp4 -vf scale=960:540 output.mp4
 # 如果写为：scale=960:-1，ffmpeg 会通知缩放滤镜再输出时保持原始的宽高比。
@@ -116,7 +116,7 @@ ffmpeg -i input.mp4 -vf scale=960:540 output.mp4
 
 添加水印
 
-```sh
+```shell
 # 在视频的左上角添加水印
 ffmpeg -i input.mp4 -i iQIYI_logo.png -filter_complex overlay output.mp4
 # 右上角
@@ -129,7 +129,7 @@ ffmpeg -i input.mp4 -i iQIYI_logo.png -filter_complex overlay=W-w:H-h output.mp4
 
 去除水印
 
-```sh
+```shell
 # 语法：-vf delogo=x:y:w:h[:t[:show]]
 # x:y 离左上角的坐标
 # w:h logo的宽和高
@@ -157,7 +157,7 @@ ffmpeg -re -stream_loop {n} -i video.mp4 -codec copy -f flv 'rtmp://server/live/
 
 ## 播放音视频
 
-```sh
+```shell
 ffplay music.mp4/music.mp3
 
 # -showmode 0:无 1:波形图 2:频谱图
@@ -194,7 +194,7 @@ ffmpeg -i https://169.vgemv.com:48801/live/15012/index.m3u8 -c copy OUTPUT.mp4
 ```
 
 ### 生成视频
-```sh
+```shell
 # 生成纯色测试视频
 ffmpeg -re -f lavfi -i color=c=red@0.2:s=vga:r=25 -vcodec libx264 -r:v 25 out_color.mp4
 

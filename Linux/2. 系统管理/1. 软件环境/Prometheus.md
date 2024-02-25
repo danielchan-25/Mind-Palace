@@ -1,0 +1,63 @@
+# Prometheus
+
+```shell
+# 创建用户
+groupadd prometheus
+useradd prometheus -g prometheus -s /sbin/nologin
+```
+
+```shell
+tar -xvf prometheus-2.36.2.linux-arm64.tar.gz
+mv prometheus-2.36.2.linux-arm64 prometheus
+./prometheus --version
+./prometheus --config.file="./prometheus.yml" &
+ss -tnalp | grep 9090
+
+# 可按实际情况修改web端口
+./prometheus --config.file="./prometheus.yml" --web.listen-address=:19090 &
+```
+
+访问网页：`IP:9090`
+
+## 配置文件
+
+配置文件为：`prometheus/prometheus.yml`
+```yml
+global: # 全局配置
+  scrape_interval: 10s # 默认抓取周期，单位为：ms，
+  scrape_timeout: 10s # 拉取超时时间
+  evaluation_interval: 15s #估算规则的默认周期
+ 
+alerting: # 告警配置
+  alertmanagers:
+  - static_configs:
+    - targets:
+      # - alertmanager:9093
+ 
+rule_files: # 规则文件
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+ 
+scrape_configs: # 拉取配置
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+ 
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+ 
+    static_configs:
+    - targets: ['localhost:9090']
+```
+其大致可分为四部分：
+- `global`：全局配置，其中`scrape_interval`表示抓取一次数据的间隔时间，`evaluation_interval`表示进行告警规则检测的间隔时间；
+- `alerting`：告警管理器（Alertmanager）的配置，目前还没有安装`Alertmanager`；
+- `rule_files`：告警规则有哪些；
+- `scrape_configs`：抓取监控信息的目标。一个`job_name`就是一个目标，其`targets`就是采集信息的IP和端口。这里默认监控了Prometheus自己，可以通过修改这里来修改Prometheus的监控端口。Prometheus的每个exporter都会是一个目标，它们可以上报不同的监控信息，比如机器状态，或者mysql性能等等，不同语言sdk也会是一个目标，它们会上报你自定义的业务监控信息。
+
+---
+
+
+
+> 参考文档：
+>
+> 安装配置：https://www.cnblogs.com/sparkdev/p/7637583.html

@@ -6,7 +6,7 @@
 
 配置文件：`/etc/ssh/sshd_config`
 
-```sh
+```shell
 #Port 22
 
 Port 23
@@ -16,7 +16,7 @@ Port 23
 
 开启 SSH 日志，能方便查看关于 SSH 的各种信息，如登录信息等。
 
-```sh
+```shell
 # 安装rsyslog
 yum install rsyslog -y
 # 启动服务
@@ -35,7 +35,7 @@ less -N /var/log/secure
 
 禁止特定 IP 登录 SSH
 
-```sh
+```shell
 vim /etc/hosts.deny
 sshd:192.168.1.1
 ALL:192.168.1.1
@@ -45,7 +45,7 @@ ALL:192.168.1.1
 
 `/etc/ssh/sshd_config`
 
-```sh
+```shell
 PermitRootLogin no    # 禁止以root用户身份通过 SSH 登录
 LogLevel INFO        # 将LogLevel设置为INFO,记录登录和注销活动
 MaxAuthTries 3        # 限制单次登录会话的最大身份验证尝试次数
@@ -60,7 +60,7 @@ PermitEmptyPasswords no     # 禁止空密码用户登录
 
 - ssh远程登录：`/etc/pam.d/sshd `
 
-```sh
+```shell
 auth required pam_tally2.so deny=3 unlock_time=5 even_deny_root root_unlock_time=10
 # even_deny_root 也限制root用户；
 # deny  设置普通用户和root用户连续错误登陆的最大次数，超过最大次数，则锁定该用户；
@@ -72,14 +72,14 @@ auth required pam_tally2.so deny=3 unlock_time=5 even_deny_root root_unlock_time
 
 ### 查看用户登录失败次数
 
-```sh
+```shell
 pam_tally2 --user 用户名
 例：sudo pam_tally2 --user root
 ```
 
 ### 解除冻结用户
 
-```sh
+```shell
 pam_tally2 --user 用户名 --reset
 例：sudo pam_tally2 --user root --reset
 ```

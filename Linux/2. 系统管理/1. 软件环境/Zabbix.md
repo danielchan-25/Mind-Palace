@@ -1,0 +1,155 @@
+# Zabbix
+
+## Zabbix Server
+
+**CentOS 7 适用**
+
+> 安装说明：https://www.zabbix.com/documentation/5.0/zh/manual/installation/install
+
+
+```shell
+# 环境
+yum install -y \
+gcc net-snmp-devel curl-devel mysql-devel libxml2-devel libevent-devel unixODBC-devel
+
+# 创建用户
+groupadd --system zabbix
+useradd --system -g zabbix -d /usr/lib/zabbix -s /sbin/nologin -c "Zabbix Monitoring System" zabbix
+
+# 下载解压安装包
+tar -xvf zabbix-5.0.6.tar.gz
+cd zabbix-5.0.6/
+
+# 导入数据库表
+create database zabbix character set utf8 collate utf8_bin;
+grant all privileges on zabbix.* to 'zabbix'@'localhost' identified by 'zabbix';
+use zabbix
+source ./zabbix-5.0.6/database/mysql/schema.sql;
+source ./zabbix-5.0.6/database/mysql/images.sql;
+source ./zabbix-5.0.6/database/mysql/data.sql;
+
+
+# 编译安装
+./configure --prefix=/data/zabbix --enable-server \
+--with-net-snmp --with-libcurl --with-libxml2 \
+--with-mysql=./mysql/bin/mysql_config --with-unixodbc
+
+make && make install
+
+# 导入前端页面
+cp -a ui/ ./nginx/html/zabbix
+chown -R daemon.daemon ./nginx/html/zabbix
+```
+
+## Zabbix Agentd
+
+### Linux
+
+统一采用服务端的源码包安装。
+
+```shell
+./configure --prefix=/data/zabbix_agentd --enable-agent
+make
+make install
+
+# 启动
+./sbin/zabbix_agent -c ./etc/zabbix_agent.conf
+```
+
+### Windows
+
+![](/media/202308/2023-08-07_163927_8038500.2532643576536915.png)
+
+## Zabbix Proxy
+
+统一采用服务端的源码包安装，但需要在 `Zabbix Proxy` 主机上安装数据库。
+
+```shell
+# 安装 Zabbix Proxy
+./configure --prefix=/data/zabbix_proxy/ --enable-proxy --with-mysql
+```
+
+```sql
+# 导入数据库
+create database zabbix character set utf8 collate utf8_bin;
+create user 'zabbix'@'localhost' identified by 'zabbix';
+grant all privileges on zabbix.* to 'zabbix'@'localhost';
+```
+
+# 配置文件
+**仅供参考**，具体参数见：
+> https://www.zabbix.com/documentation/5.0/zh/manual
+
+## Zabbix Server
+```ini
+ListenPort=10051	# 本地监听端口
+LogType=file
+LogFile=/data/zabbix/logs/zabbix_server.log
+PidFile=/data/zabbix/zabbix_server.pid
+DBName=zabbix	# 数据库名称
+DBUser=zabbix	# 数据库用户
+DBPassword=zabbix	# 数据库密码
+Timeout=4
+AlertScriptsPath=./alertscripts		# 自定义脚本地址
+LogSlowQueries=3000
+```
+## Zabbix Agentd
+主动模式
+```ini
+PidFile=./zabbix_agentd.pid
+LogType=file
+LogFile=./zabbix_agentd.log
+LogFileSize=0
+DebugLevel=3
+StartAgents=0	# 开启主动模式
+ListenPort=10050	# 本地监听端口
+ServerActive=10.17.178.189:10051	# 服务端地址
+Hostname=10.17.174.21	# Hostname，一般填写本机 IP 地址
+Include=./etc/zabbix_agentd.conf.d/*.conf
+```
+被动模式
+```ini
+PidFile=./zabbix_agentd.pid
+LogType=file
+LogFile=./zabbix_agentd.log
+LogFileSize=0
+DebugLevel=3
+Server=10.17.178.189	# 服务端 IP
+ListenPort=10050		# 本地监听端口
+Hostname=10.17.174.21	# Hostname，一般填写本机 IP 地址
+Include=./etc/zabbix_agentd.conf.d/*.conf
+```
+## Zabbix Proxy
+```ini
+ProxyMode=1		# 开启主动模式
+Server=0.0.0.0/0	# 允许
+ServerPort=32767	# 服务端端口
+Hostname=IDC_Zabbix_Proxy	# Hostname，一般填写本机 IP 地址
+ListenPort=10051	# Proxy 监听端口
+LogType=file
+LogFile=/data/zabbix_proxy/zabbix_proxy.log
+LogFileSize=0
+DebugLevel=3
+PidFile=/data/zabbix_proxy/zabbix_proxy.pid
+DBHost=localhost	# 数据库地址
+DBName=zabbix		# 数据库名称
+DBUser=zabbix		# 数据库用户
+DBPassword=zabbix	# 数据库密码
+DBPort=56666	# 数据库地址
+ListenIP=0.0.0.0	# 监听IP
+Timeout=4
+LogSlowQueries=3000
+StatsAllowedIP=127.0.0.1,0.0.0.0/0,10.17.178.0/24
+```
+
+
+
+---
+
+
+
+> 主动模式：https://dandelioncloud.cn/article/details/1466602917854801921
+>
+> 主动模式：https://blog.csdn.net/weixin_32122595/article/details/116698780
+>
+> 主动模式：http://t.zoukankan.com/Su-per-man-p-8658927.html

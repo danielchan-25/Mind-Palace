@@ -17,7 +17,7 @@ OpenSSL提供了一组API函数，使开发人员可以在自己的应用程序�
 
 源码安装
 
-```sh
+```shell
 wget https://www.openssl.org/source/openssl-3.0.7.tar.gz
 tar -xvf openssl-3.0.7.tar.gz
 cd openssl-3.0.7

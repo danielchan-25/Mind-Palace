@@ -23,7 +23,7 @@ PCRE的特点包括：
 ## 安装
 
 源码安装
-```sh
+```shell
 wget https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.40/pcre2-10.40.tar.gz
 tar -xvf pcre2-10.40.tar.gz
 cd pcre2-10.40
@@ -32,7 +32,7 @@ make && make install
 ```
 apt 安装
 
-```sh
+```shell
 apt install build-essential
 apt install libtool
 apt install libpcre3-dev

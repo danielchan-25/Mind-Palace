@@ -11,7 +11,7 @@ ps -ef | grep php
 
 ## Yum 安装
 
-```sh
+```shell
 # 安装 epel-release
 rpm -ivh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 
@@ -24,7 +24,7 @@ yum install php70w
 
 ## 源码安装
 
-```sh
+```shell
 # 依赖安装
 yum install -y \
 libxml2 libxml2-devel \
@@ -42,7 +42,7 @@ libtool sqlite-devel\
 php-bcmath php-mbstring \
 php-gd php-xml
 ```
-```sh
+```shell
 # 编译参数：
 # https://www.php.net/manual/zh/migration74.other-changes.php#migration74.other-changes.pkg-config
 tar -xvf php7.tar.gz
@@ -117,7 +117,7 @@ make -j4
 make install -j4
 ```
 
-```sh
+```shell
 # 添加环境变量
 echo 'export PATH=$PATH:/usr/local/php/bin' >> /etc/profile
 source /etc/profile

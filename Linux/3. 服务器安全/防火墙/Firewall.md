@@ -53,13 +53,13 @@ Linux防火墙可以通过命令行工具（如iptables、nftables）进行配�
 5. 和POSTROUTING（路由后过滤）
 
 ### 安装
-```sh
+```shell
 # CentOS
 yum -y install iptables iptables-services
 systemctl start iptables && systemctl enable iptables
 ```
 ### 语法
-```bash
+```shell
 # 语法
 iptables [-t table] command [match] [target]
 iptables [-t 表名] <-A|I|D|R> 链名 [规则编号] [-i|o 网卡名称] [-p 协议类型] [-s 源ip|源子网] [--sport 源端口号] [-d 目的IP|目标子网] [--dport 目标端口号] [-j 动作]
@@ -116,7 +116,7 @@ iptables [-t 表名] <-A|I|D|R> 链名 [规则编号] [-i|o 网卡名称] [-p �
 | -j   | 示例：iptables -A INPUT -p tcp -sport 22 -j DROP –jump target 指定要进行的处理动作 ACCEPT ：允许，匹配后就不会去匹配当前链中的其他规则 DROP ：丢弃 |
 
 ### 实例
-```bash
+```shell
 # 清空已有 iptables 规则
 iptables -F
 iptables -X
@@ -127,20 +127,20 @@ iptables -Z
 ## 需使用：iptables -L -n --line-numbers，查看序号
 iptables -D INPUT 110
 ```
-```bash
+```shell
 # 放行端口
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -s 127.0.0.1 -d 127.0.0.1 -j ACCEPT	# 允许本地回环接口(即运行本机访问本机)
 iptables -A OUTPUT -j ACCEPT	# 允许所有本机向外的访问
 ```
-```bash
+```shell
 # 屏蔽IP
 iptables -I INPUT -s 123.45.6.7 -j DROP		# 屏蔽单个IP的命令
 iptables -I INPUT -s 123.0.0.0/8 -j DROP	# 封整个段即从123.0.0.1到123.255.255.254的命令
 iptables -I INPUT -s 124.45.0.0/16 -j DROP	# 封IP段即从123.45.0.1到123.45.255.254的命令
 iptables -I INPUT -s 123.45.6.0/24 -j DROP	# 封IP段即从123.45.6.1到123.45.6.254的命令是
 ```
-```bash
+```shell
 # 查看已添加的规则
 ## -L 表示查看当前表的所有规则，默认查看的是 filter 表，如果要查看 nat 表，可以加上 -t nat 参数。
 ## -n 表示不对 IP 地址进行反查，加上这个参数显示速度将会加快。
@@ -166,7 +166,7 @@ Firewalld 是 CentOS 及其衍生发行版（如RHEL）中默认的动态防火�
 
 ### 常用命令
 
-```sh
+```shell
 sudo systemctl start firewalld   # 启动Firewalld服务
 sudo systemctl stop firewalld    # 停止Firewalld服务
 sudo systemctl restart firewalld # 重启Firewalld服务
@@ -177,7 +177,7 @@ sudo systemctl enable firewalld	 # 设置开机启动
 
 ### 基本语法
 
-```sh
+```shell
 sudo firewall-cmd --zone=public --add-service=http     # 添加HTTP服务规则到public区域
 sudo firewall-cmd --zone=public --remove-service=http  # 从public区域删除HTTP服务规则
 
