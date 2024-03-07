@@ -1,5 +1,102 @@
 # Zabbix_自定义监控
-## 监控 Windows 主机进程
+
+添加自定义监控，需要在客户端的配置文件中，将这行配置取消注释，然后重启客户端。
+
+```ini
+UnsafeUserParameters=1
+Include=./etc/zabbix_agentd.conf.d/*.conf
+```
+
+然后将自定义监控的配置文件放进：`etc/zabbix_agentd.conf.d` 里。
+
+# 流程
+
+添加自定义监控 -> 添加模板 -> 添加监控项 -> 添加触发器
+
+## 1. 检测CPU温度
+
+需求：实时检测 CPU 温度。
+
+检测物理主机的 CPU 温度，需提前安装 **sensors** 该命令。
+
+```shell
+UserParameter=get_temperature_cpu,/usr/bin/sensors|grep 'Core 0'|cut -c 16-19|awk 'NR==1'
+```
+
+## 2. 监控 MySQL
+
+监控 MySQL 可以使用自带的 `Template DB MySQL by Zabbix agent 2` 模板，前提是客户端也是 `Zabbix agent 2`。
+
+## 3. 监控 Redis
+
+由于 5.0 TLS 版本不支持 Yaml 模板导入，唯有使用自带的 `Template DB Redis` 模板。
+
+1. 新建宏：`{$REDIS_PASS}`，值为密码
+2. 修改监控项
+   1. `Redis: Get config`，``Redis: Get info`, `Redis: Ping`, `Redis: Slowlog entries per second`
+   2. 键值统一添加 `{$REDIS_PASS}`，例如：`["{$REDIS.CONN.URI}","{$REDIS_PASS}"]`
+
+## 4. 监控终端在线人数
+
+需求：限制登陆人数不超过三个，超过三人则发出警告。
+
+1. 查看登陆人数命令
+
+   ```shell
+   [root@centos7-server /]# who am i | wc -l
+   1
+   ```
+
+2. 在客户端创建 唯一key
+
+   ```shell
+   UserParameter=<key>,<shell command>
+   
+   vim zabbix/etc/zabbix_agentd.conf
+   UserParameter=login-user,w | grep up | awk '{print $6}'
+   ```
+
+3. 重启客户端后，测试此 key 是否可用
+
+   ```shell
+   service zabbix_agentd restart
+   ./zabbix_get -s 127.0.0.1 -p 10050 -k "login-user"
+   1
+   ```
+
+4. 在web端进行配置
+
+   1. 新增模板
+
+      1. 模板名称：Login-user、群组：News
+
+      2. 应用集：Server Security（任意）
+
+      3. 监控项
+
+         名称：Number of logged ind users
+
+         键值：login-user
+
+      4. 触发器
+
+         名称：当前在线用户数量大于3个
+
+         表达式：{Login-user:login-user.last()}>=3
+
+      5. 图形名称：Number of logged in users
+
+   2. 在需要监控的主机里，添加这个模板
+
+5. 添加动作
+
+   1. 名称：在线用户大于3个
+   2. 条件
+      1. 触发器 - 等于 - Login-user
+   3. 操作
+      1. 操作细节，添加发送用户，发送的信息
+
+## 5. 监控 Windows 主机进程
 
 需求：在 Windows 客户端中，运行了 4 个 Python 进程，需要监控是否在线。
 
@@ -7,15 +104,3 @@
 2. 新建【监控项】：`proc.num[<name>,<user>,<state>,<cmdline>,<zone>]`，键值设置为：`proc.num[python.exe]`
 3. 点击【测试】，会显示出 4 个 Python 的进程数量，OK 正常
 4. 新建【触发器】：表达式根据实际情况输入，如小于4触发告警，如=0触发告警。
-
-
-## 监控 MySQL
-监控 MySQL 可以使用自带的 `Template DB MySQL by Zabbix agent 2` 模板，前提是客户端也是 `Zabbix agent 2`。
-
-## 监控 Redis
-由于 5.0 TLS 版本不支持 Yaml 模板导入，唯有使用自带的 `Template DB Redis` 模板。
-
-1. 新建宏：`{$REDIS_PASS}`，值为密码
-2. 修改监控项
-   1. `Redis: Get config`，``Redis: Get info`, `Redis: Ping`, `Redis: Slowlog entries per second`
-   2. 键值统一添加 `{$REDIS_PASS}`，例如：`["{$REDIS.CONN.URI}","{$REDIS_PASS}"]`
