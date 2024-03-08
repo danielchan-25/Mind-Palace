@@ -23,7 +23,13 @@ services:
       - "222:22"
 ```
 
-# runner
-和其他CI/CD解决方案一样，Gitea不会自己运行Job，而是将Job委托给Runner。 Gitea Actions的Runner被称为act runner，它是一个独立的程序，也是用Go语言编写的。
+# CI/CD
+和其他CI/CD解决方案一样，Gitea不会自己运行Job，而是将Job委托给Runner。 
+
+Gitea Actions的Runner被称为act runner，它是一个独立的程序，也是用Go语言编写的。
 
 > 下载地址：https://gitea.com/gitea/act_runner/releases
+
+添加工作流：
+
+1. 在存储库下新建 `.gitea/workflows/` 目录，然后新建工作流文件，以 `.yaml` 结尾
