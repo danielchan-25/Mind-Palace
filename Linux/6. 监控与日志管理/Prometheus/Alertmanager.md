@@ -147,3 +147,9 @@ cd alertmanager-0.25.0-rc.2.linux-amd64/
    ```
 
 6. 测试，将其中一个告警规则生效即可看到。
+
+
+---
+> 参考文档
+>
+> https://www.cnblogs.com/colin88/p/17108936.html
