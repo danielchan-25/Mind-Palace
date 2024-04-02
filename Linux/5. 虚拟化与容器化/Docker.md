@@ -74,6 +74,16 @@ docker network connect '网络' '容器'
 docker network disconnect '网络' '容器'
 ```
 
+### 端口
+
+> https://www.cnblogs.com/kingsonfu/p/11578073.html
+> 
+> https://cloud.tencent.com/developer/article/1833131
+> 
+> https://www.cnblogs.com/junlin623/p/17365848.html
+
+新建容器时，忘记添加端口映射了，但又不想重建容器时，就可以参考上面文章，在不新建容器的情况下添加端口映射。
+
 ### 其它
 
 ```shell
