@@ -8,6 +8,14 @@ date: 2024-04-17
 
 # 服务端部署
 
+## Docker 部署
+
+```shell
+docker run -d --name bitwarden \
+-v ~/bitwarden/:/data/ \
+-p 8080:80 bitwardenrs/server
+```
+
 ## Docker-Compose 部署
 
 ```yml
