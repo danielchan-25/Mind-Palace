@@ -1,5 +1,12 @@
-# 智能家居：Home-assistant
+---
+title: "智能家居：Home-assistant"
+
+date: 2024-01-02
+
+---
+
 ![](/media/202303/2023-03-10_145026_8940670.3460440800485811.png)
+
 # 介绍
 HomeAssistant，简称 HA，是一款基于 Python 的智能家居开源系统，支持众多品牌的智能家居设备，可以轻松实现设备的语音控制、自动化等。
 相比起Homekit、米家、Aqara等，最大的优点是：一统江湖，能集中管理各个品牌的智能家居，你也不想在各种APP中跳转才能使用吧，这样太不智能了。
@@ -8,17 +15,16 @@ HomeAssistant，简称 HA，是一款基于 Python 的智能家居开源系统�
 ## docker部署
 ```shell
 docker pull homeassistant/home-assista
-```
-```bash
 docker run -d \
   --name homeassistant \
   --privileged \
   --restart=unless-stopped \
   -e TZ="Asia/Shanghai" \
-  -v /data/docker-data/home-assistant/config:/config \
+  -v ~/home-assistant/config:/config \
   --network=host \
   ghcr.io/home-assistant/home-assistant:stable
 ```
+
 ## docker-compose部署
 ```yml
 version: "3"
@@ -33,7 +39,7 @@ services:
     volumes:
       - "/data/docker-data/home-assistant/config:/config"
     ports:
-      - "61238:8123"
+      - "8123:8123"
 ```
 
 网页访问 IP:8123 进入后台，根据实际情况填入信息即可。
@@ -41,14 +47,15 @@ services:
 ![](/media/202303/2023-03-10_145105_3828890.19353547074826638.png)
 
 # HACS
+
 ## 简介
 HACS（Home Assistant Community Store）是HA的第三方应用商店，有很多大佬们写的各种插件，可以连接各大物联网平台的设备，是一个必装的集成。
-> 下载地址：https://github.com/hacs/integration/releases/
+> Github: [HACS](https://github.com/hacs/integration/releases/)
 
-## 安装说明
+## 安装
 我们先下载安装包：**hacs.zip**，并在服务器 Home-asstant 上创建三个目录：
 
-```bash
+```shell
 ./config/custom_components
 ./config/custom_components/hacs
 ./config/www
@@ -60,7 +67,7 @@ HACS（Home Assistant Community Store）是HA的第三方应用商店，有很�
 
 将安装包放在`./config/custom_components/hacs` 下并解压，得到的内容应该是：
 
-```bash
+```shell
 ls /config/custom_components/hacs
 >>>
 __init__.py                 const.py                    enums.py                    hacs_frontend_experimental  repositories                update.py
@@ -92,6 +99,7 @@ config_flow.py              entity.py                   hacs_frontend           
 举例：我要添加 Uptime_Kuma
 
 1. 『HACS』->『集成』->右下角『浏览并下载存储库』-> 搜索『Uptime』
+
 ![](/media/202303/2023-03-10_145453_6080640.2848525808359921.png)
 
 2. 点击进入，再点击右上角的 ... 选择存储库（GitHub）
@@ -111,7 +119,7 @@ config_flow.py              entity.py                   hacs_frontend           
 服务器上创建 `themes` 目录，与 `custom_components` `www` 同级
 
 目录结构：
-```bash
+```shell
 config
 ├── configuration.yaml
 ├── custom_components
@@ -128,7 +136,7 @@ config
 > 也可能不叫 `ios-themes.yml`，是 `yml` 结尾的文件
 
 目录结构：
-```bash
+```shell
 ├── themes
 │   └── ios-themes
 │       ├── homekit-bg-blue-red.jpg
