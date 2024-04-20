@@ -1,5 +1,6 @@
 ---
 title: "Stable Diffusion web UI"
+date: 2024-01-22
 
 ---
 
@@ -7,6 +8,7 @@ title: "Stable Diffusion web UI"
 Stable Diffusion 也是 Ai 画图的一种，已在 GitHub 上开源，所以可以本地部署。
 本地部署有没有生成图片数量限制，不用花钱，不用排队，自由度高等一堆优点。
 由于在查阅资料过程中，发现一个叫：Stable Diffusion web UI 的项目，是在 Stable Diffusion 的项目上封装，且带有 UI 界面，部署难度大大降低，所以使用这个。
+
 > Github: [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 
 # 部署
@@ -130,7 +132,7 @@ git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 
 > 1.5版本：[v1.5](https://huggingface.co/runwayml/stable-diffusion-v1-5)
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/stablediffusionwebui-1.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/stablediffusionwebui-1.png)
 
 下载完成后，存放在 `stable-diffusion-webui/models` 下。
 
@@ -140,7 +142,7 @@ git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 存放在 `stable-diffusion-webui/` 下。
 > Github: [GFPGAN](https://github.com/TencentARC/GFPGAN)
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/stablediffusionwebui-2.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/stablediffusionwebui-2.png)
 
 环境已全部准备完毕，可以启动程序。
 
@@ -199,7 +201,7 @@ python launch.py --nowebui
 
 在 Stable Diffusion web UI 中，扩展在以下图中添加：
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/stablediffusionwebui-3.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/stablediffusionwebui-3.png)
 
 但因国内网络环境问题，经常无法加载，那就可以使用其它操作。
 
@@ -215,11 +217,12 @@ python launch.py --nowebui
 `Clip Skip`
 - early stopping parameter for CLIP model，1是保持不变，最后一层才停止。
 如何设置：[Setting]-->[stable diffusion]-->[clip skip]
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/stablediffusionwebui-4.png)
+
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/stablediffusionwebui-4.png)
 
 `ENSD`
 - 全称是：`Eta noise seed delta`，
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/stablediffusionwebui-5.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/stablediffusionwebui-5.png)
 
 ## 命令行生成图像
 ```shell

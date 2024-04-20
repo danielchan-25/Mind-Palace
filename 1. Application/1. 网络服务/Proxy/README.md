@@ -65,3 +65,6 @@ set https_proxy=https://127.0.0.1:10808/
 > 如遇到：`curl: (35) schannel: failed to receive handshake, SSL/TLS connection failed`
 > 
 > 请将 `http://127.0.0.1:10808` 切换为： `socks5://127.0.0.1`
+
+
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/command-1.png)

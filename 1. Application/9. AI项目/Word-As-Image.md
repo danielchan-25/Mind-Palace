@@ -1,5 +1,6 @@
 ---
 title: "Word-As-Image"
+date: 2024-04-11
 
 ---
 
@@ -18,5 +19,5 @@ semantic_concept："Dog"
 
 Font："HobeauxRococeaux-Sherman"
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/word-as-image-1.png)
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/word-as-image-2.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/word-as-image-1.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/word-as-image-2.png)

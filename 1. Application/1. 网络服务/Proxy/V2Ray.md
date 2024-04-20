@@ -32,7 +32,7 @@ date: 2024-04-20
 
 可以从 Windows 客户端中，导出已有的配置文件，然后导入
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/1.%20网络服务/img/V2Ray-1.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/V2Ray-1.png)
 
 ```shell
 # 启动，可以通过 -c 指定配置文件

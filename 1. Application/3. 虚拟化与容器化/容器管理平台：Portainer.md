@@ -1,9 +1,10 @@
 ---
 title: "容器管理平台：Portainer"
+date: 2024-02-12
 
 ---
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Virtualization/img/Portainer-1.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/Portainer-1.png)
 
 ## 简介
 Portainer是一个轻量级的容器管理平台，为用户提供了一个简单易用的Web界面来管理Docker环境。
@@ -20,13 +21,13 @@ Portainer还提供了丰富的图形化操作和监控功能，使得用户可�
 ## docker部署
 
 1. 终端中输入以下命令拉取Portainer镜像：
-```bash
+```shell
 docker pull portainer/portainer-ce
 ```
 
 2. 运行以下命令启动Portainer容器：
 
-```bash
+```shell
 docker run -d -p 9000:9000 \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v portainer_data:/data \
@@ -67,9 +68,9 @@ services:
 
 ### 管理Docker容器和镜像
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Virtualization/img/Portainer-2.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/Portainer-2.png)
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Virtualization/img/Portainer-3.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/Portainer-3.png)
 
 Portainer可以帮助用户管理Docker容器和镜像，例如创建、启动、停止、删除容器，以及拉取、删除、构建、推送镜像等操作。
 
@@ -77,7 +78,7 @@ Portainer可以帮助用户管理Docker容器和镜像，例如创建、启动�
 
 ### 使用Docker Compose管理多个容器
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Virtualization/img/Portainer-4.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/Portainer-4.png)
 
 Portainer还支持使用Docker Compose管理多个容器，用户可以上传Docker Compose文件，创建、更新、删除堆栈，以及查看堆栈中的服务和容器。
 
@@ -85,7 +86,7 @@ Portainer还支持使用Docker Compose管理多个容器，用户可以上传Doc
 
 ### 监控Docker环境
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Virtualization/img/Portainer-5.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/Portainer-5.png)
 
 Portainer提供了用于监控Docker环境的各种指标的功能，
 

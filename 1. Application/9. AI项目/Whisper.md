@@ -1,5 +1,6 @@
 ---
 title: "Whisper"
+date: 2024-01-01
 
 ---
 
@@ -55,7 +56,7 @@ pip install git+https://github.com/openai/whisper.git
 
 以下是我在网上采摘一段文字，转成mp3文件后，再使用 `Whisper` 转回中文的真实测试：
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/whisper-1.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/whisper-1.png)
 
 
 
@@ -67,6 +68,6 @@ pip install git+https://github.com/openai/whisper.git
 >
 > 显卡型号：RTX 2060
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/whisper-shorttext.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/whisper-shorttext.png)
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Ai/img/whisper-longtext.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/whisper-longtext.png)

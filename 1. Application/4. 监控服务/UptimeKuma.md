@@ -1,22 +1,28 @@
-# UptimeKuma
+---
+title: "UptimeKuma"
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Monitor/img/UptimeKuma-1.png)
-> 项目地址：https://github.com/louislam/uptime-kuma
+date: 2024-04-20
 
-## 简介
+---
+
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/UptimeKuma-1.png)
+
+Github: [UptimeKuma](https://github.com/louislam/uptime-kuma)
+
+# 简介
 Uptime Kuma 是一个开源的监控工具，功能类似于 Uptime Robot。相较于其它同类工具，Uptime Kuma 支持自托管服务，并且限制更少。
 
-## 部署
-### docker部署
+# 部署
+## docker部署
 1. 先在本地创建文件夹
 
-```sh
+```shell
 mkdir -p /opt/uptime-kuma/data
 ```
 
 2. 运行命令
 
-```sh
+```shell
 docker run \
 --restart=always \
 -p 3001:3001 \
@@ -29,7 +35,7 @@ docker run \
 
 4. admin密码重置：`docker exec -it <container name> npm run reset-password`
 
-### docker-compose部署
+## docker-compose部署
 ```yml
 version: '2.9.0'
 services:
@@ -44,11 +50,11 @@ services:
       - "63001:3001"
 ```
 
-## 使用说明
+# 使用
 
 这里介绍两种最常用也是最简单的监控类型，URL & TCP Port
 
-### 监控
+## 监控
 
 #### URL 监控
 
@@ -57,7 +63,7 @@ services:
 已知 MrDoc 是通过 `http://IP:10086` 的方式访问，那么就可以监听 `http://IP:10086` 这个URL。
 
 在左上角「添加监控项」，输入 URL 的地址即可，点击最下方的保存测试，显示成功即可。
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Monitor/img/UptimeKuma-2.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/UptimeKuma-2.png)
 
 #### TCP Port 监控
 
@@ -65,7 +71,7 @@ services:
 
 「监控类型」选择 TCP Port，填入主机名与端口号，点击保存，显示成功即可。
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Monitor/img/UptimeKuma-3.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/UptimeKuma-3.png)
 
 ### 通知
 监控搭建完成了，但怎么通知我呢？
@@ -74,4 +80,4 @@ services:
 
 我选择的是：钉钉机器人，填入 Webhook 地址跟加签密钥即可。（记得点击测试查看是否正常）
 
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Monitor/img/UptimeKuma-4.png)
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/UptimeKuma-4.png)

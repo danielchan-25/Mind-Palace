@@ -1,9 +1,15 @@
-# 相册系统：Immich
-![](https://github.com/danielchan-25/Mind-Palace/blob/main/Services/Media/img/Immich-1.png)
-> 项目地址：https://github.com/immich-app/immich
+---
+title: "相册系统：Immich"
+date: 2023-08-11
 
-## 简介
-### 特性
+---
+
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/Immich-1.png)
+
+Github: [Immich](https://github.com/immich-app/immich)
+
+# 简介
+## 特性
 1. 上传和查看视频和照片
 2. 打开应用程序时自动备份
 3. 将照片和视频下载到本地设备
@@ -15,12 +21,12 @@
 9. 管理功能（用户管理）
 10. 后台备份
 
-### 系统要求
+## 系统要求
 1. 操作系统 ：首选 Ubuntu、Debian、macOS 等
 2. RAM ：至少 2GB，首选 4GB
 3. 核心 ：至少 2 个核心，首选 4 个核心
 
-### 技术栈
+## 技术栈
 有几个服务组成了 Immich：
 1. NestJs - 应用程序的后端
 2. SvelteKit - 应用程序的 Web 前端
@@ -29,14 +35,14 @@
 5. Nginx - 负载均衡和优化的文件上传
 6. TensorFlow - 对象检测 (COCO SSD) 和图像分类 (ImageNet)
 
-## 部署
-### docker部署
+# 部署
+## docker部署
 
 暂无
 
-### docker-compose部署
-```bash
+## docker-compose部署
 
+```shell
 # 获取 yml 文件
 wget https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
 

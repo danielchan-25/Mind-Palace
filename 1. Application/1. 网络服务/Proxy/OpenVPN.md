@@ -63,6 +63,8 @@ New clients can be added by running this script again.
 
 # 客户端
 
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/OpenVPN-1.png)
+
 ## Windows
 
 官网: [OpenVPN.net](https://openvpn.net/community-downloads/)
