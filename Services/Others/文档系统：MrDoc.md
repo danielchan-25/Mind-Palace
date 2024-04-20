@@ -1,9 +1,18 @@
+---
+title: "文档系统：MrDoc"
+date: 2023-12-05
+
+---
+
 # 文档系统：MrDoc
 
+> 官网: [MrDoc](https://www.mrdoc.pro/)
+> 
+> GitHub: [MrDoc](https://github.com/zmister2016/MrDoc)
+> 
+> Demo: [MrDoc](https://doc.mrdoc.pro/)
 
-> 官网：https://www.mrdoc.pro/
-> 项目地址：https://github.com/zmister2016/MrDoc
-> Demo：https://doc.mrdoc.pro/
+
 ## 简介
 MrDoc 是基于 Python 开发的在线文档系统，适合作为个人和小型团队的私有云文档、云笔记和知识管理工具。致力于成为优秀的私有化在线文档部署方案。
 
@@ -13,11 +22,9 @@ MrDoc 拥有 8 大特点，分别是：
 
 我最喜欢的是私有部署，将所有的文档都存放在本地的服务器上，就算存一些密码之类的也不用担心会被有心人盗用。
 
-
-
 ## 部署
 ### docker部署
-```sh
+```shell
 docker run \
 --name mrdoc \
 -p 10086:10086 \
@@ -30,7 +37,7 @@ docker run \
 `mkdir -p ~/mrdoc/media`
 
 2 运行容器
-```sh
+```shell
 docker run --name mrdoc \
 -p 10086:10086 \
 -v ~/mrdoc:/app/MrDoc/config \
@@ -40,7 +47,7 @@ docker run --name mrdoc \
 ```
 
 3 自定义端口
-```sh
+```shell
 docker run --name mrdoc \
 -e LISTEN_PORT=port -p xxx:port \
 -v ~/mrdoc:/app/MrDoc/config \
@@ -58,7 +65,7 @@ docker run --name mrdoc \
 自行替换 `xxx` 与 `port` 即可。
 
 查看密码
-```sh
+```shell
 docker logs mrdoc 2>&1 | grep pwd
 ```
 
@@ -79,7 +86,7 @@ services:
 ```
 ## 备份
 ### 手动备份
-```sh
+```shell
 # 先备份
 docker cp mrdoc:/app/MrDoc/config /tmp/config
 docker cp mrdoc:/app/MrDoc/media /tmp/media
@@ -94,7 +101,7 @@ docker restart mrdoc
 
 `00 03 * * 1 /bin/bash /data/scripts/mrdoc_scripts.sh`
 
-```sh
+```shell
 #!/bin/sh
 BACKUP_FILE=/data/backup
 DAY=`date +%Y-%m-%d`
@@ -103,3 +110,6 @@ mkdir -p /data/backup/mrdoc/${DAY}
 docker cp mrdoc:/app/MrDoc/config /data/backup/mrdoc/${DAY}/config
 docker cp mrdoc:/app/MrDoc/media /data/backup/mrdoc/${DAY}/media
 ```
+
+---
+> [Nginx反向代理](https://doc.mrdoc.pro/doc/44910/)
