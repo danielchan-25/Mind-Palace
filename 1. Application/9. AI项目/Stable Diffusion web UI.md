@@ -237,15 +237,25 @@ python scripts/txt2img.py --prompt "a close-up portrait of a cat by pablo picass
 下载完成后，导入到：`stable-diffusion-webui/models/Lora` 目录
 
 
+# API
+
+想要使用 `stable diffusion webui` 的 `api` 功能，首先在启动时需添加：`--api` 参数，如：
+
+```shell
+python.exe launch.py --port 7860 --nowebui --no-half --disable-nan-check --listen
+```
+
+启动成功后，访问：`http://localhost:7860/docs` 即可看到 `API` 使用说明。
+
 ---
 参考文档
 
-> [安装gfpgan](https://blog.csdn.net/weixin_40735291/article/details/129153398)
+> 安装gfpgan: [CSDN](https://blog.csdn.net/weixin_40735291/article/details/129153398)
 
-> [Prompts](https://www.bilibili.com/video/BV12X4y1r7QB)
+> Prompts: [BiliBili](https://www.bilibili.com/video/BV12X4y1r7QB)
 
-> [启动参数](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings)
+> 启动参数: [Github](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings)
 
-> [启动参数](https://profaneservitor.github.io/sdwui-docs/cn/cli/)
+> 启动参数: [Github](https://profaneservitor.github.io/sdwui-docs/cn/cli/)
 
-> [启动参数](https://blog.csdn.net/watson2017/article/details/129285656)
+> 启动参数: [CSDN](https://blog.csdn.net/watson2017/article/details/129285656)
