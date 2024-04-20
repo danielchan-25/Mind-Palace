@@ -13,7 +13,7 @@ date: 2024-04-17
 ```shell
 docker run -d --name bitwarden \
 -v ~/bitwarden/:/data/ \
--p 8080:80 bitwardenrs/server
+-p 80:80 bitwardenrs/server
 ```
 
 ## Docker-Compose 部署
@@ -39,6 +39,33 @@ docker-compose -f bitwarden.yml up -d
 ```
 
 访问：`http://localhost:443` 
+
+# 反向代理
+
+以下是 `Nginx` 的配置文件：
+
+```nginx
+server {
+    listen    443 ssl;
+    server_name  localhost;
+
+    ssl_certificate bitwarden.crt;
+    ssl_certificate_key bitwarden.key;
+    ssl_session_timeout 5m;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+    ssl_prefer_server_ciphers on;
+    
+    location / {
+        proxy_set_header Host $host; 
+        proxy_set_header X-Real-IP $remote_addr; 
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        proxy_set_header X-Forwarded-Proto $scheme; 
+        proxy_pass    http://localhost:443;  # Bitwarden 的地址
+    }
+}
+```
+
 
 # 生成受信任的SSL证书
 
