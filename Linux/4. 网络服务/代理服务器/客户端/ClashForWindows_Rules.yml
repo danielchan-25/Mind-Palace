@@ -1,0 +1,27 @@
+parsers: # array
+ - url: https://
+   yaml:
+     prepend-rules:
+       - DOMAIN-SUFFIX,icanhazip.com,DIRECT
+       - DOMAIN-SUFFIX,huggingface.co,全球智能
+       - DOMAIN-SUFFIX,civitai.com,全球智能
+       - DOMAIN-SUFFIX,ghelper.net,全球智能
+       - DOMAIN-SUFFIX,v2ex.com,全球智能
+       - DOMAIN-SUFFIX,discord.com,全球智能
+       - DOMAIN-SUFFIX,reddit.com,美國费利蒙
+
+       # Google Translate
+       - DOMAIN-SUFFIX,translate.goolge.com,全球智能
+       - DOMAIN-SUFFIX,translate.google.cn,全球智能
+       - DOMAIN-SUFFIX,translate.googleapis.com,全球智能
+
+       # OpenAI
+       - DOMAIN-SUFFIX,chat.openai.com,美國费利蒙
+       - DOMAIN-SUFFIX,cdn.oaistatic.com,美國费利蒙
+       - DOMAIN-SUFFIX,gravatar.com,美國费利蒙
+       - DOMAIN-SUFFIX,anthropic.com,美國费利蒙
+
+       # Spotify
+       - DOMAIN-SUFFIX,spotifycdn.com,美國费利蒙
+       - DOMAIN-SUFFIX,spotify.com,美國费利蒙
+       - DOMAIN-SUFFIX,scdn.co,美國费利蒙
