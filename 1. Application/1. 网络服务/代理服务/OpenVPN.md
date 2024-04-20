@@ -1,16 +1,18 @@
 ---
 title: "OpenVPN"
+date: 2024-04-20
 
 ---
 
-# 服务端部署
+# 服务端
+
 ## 二进制包安装
-> [OpenVPN.deb](https://ubuntu.com/server/docs/service-openvpn)
+下载: [OpenVPN.deb](https://ubuntu.com/server/docs/service-openvpn)
 
 由于太复杂导致安装失败，故放弃
 
 ## 一键部署
-> [Github](https://github.com/Nyr/openvpn-install)
+Github: [openvpn](https://github.com/Nyr/openvpn-install)
 
 ```shell
 root@cc-ubuntu:/opt# bash Install-OpenVPN.sh
@@ -59,9 +61,19 @@ New clients can be added by running this script again.
 
 将 `/root/abc.ovpn` 导出存放，客户端连接需要使用。
 
-## 客户端使用
-### Windows
+# 客户端
 
-> [OpenVPN.net](https://openvpn.net/community-downloads/)
+## Windows
+
+官网: [OpenVPN.net](https://openvpn.net/community-downloads/)
 
 下载客户端后，导入以上的 `abc.ovpn` 文件后即可。
+
+## IOS
+
+国区已下架该软件，切换至其它地区即可下载。
+
+
+## Android
+
+Google Play 下载。

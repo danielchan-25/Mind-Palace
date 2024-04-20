@@ -1,9 +1,14 @@
-# Docker-Compose
+---
+title: "Docker-Compose"
+
+date: 2024-01-21
+
+---
 
 > 参考文档：
 > https://blog.csdn.net/weixin_43695104/article/details/121035401
 
-## 简介
+# 简介
 
 `Compose` 是用于定义和运行多容器 `Docker` 应用程序的工具。
 通过 `Compose`，您可以使用 YML 文件来配置应用程序需要的所有服务。
@@ -15,9 +20,9 @@
 - 使用 `docker-compose.yml` 定义构成应用程序的服务，这样它们可以在隔离环境中一起运行。
 - 最后，执行 `docker-compose up` 命令来启动并运行整个应用程序。
 
-## 安装
+# 安装
 
-> 下载地址：https://github.com/docker/compose/releases
+Github: [Docker-compose](https://github.com/docker/compose/releases)
 
 ```shell
 wget https://github.com/docker/compose/releases/download/v2.9.0/docker-compose-linux-x86_64
@@ -26,7 +31,7 @@ ln -s /data/soft/docker-compose-linux-x86_64 /usr/bin/docker-compose
 docker-compose --version
 ```
 
-## 语法格式
+# 使用
 
 ```yml
 version           # 指定 compose 文件的版本，必写
@@ -47,7 +52,7 @@ services          # 定义所有的 service 信息, 必写
    network_mode: "container:[container name/id]"
 ```
 
-## 常用命令
+# 常用命令
 
 | 命令               | 解释                   |
 | ------------------ | ---------------------- |
