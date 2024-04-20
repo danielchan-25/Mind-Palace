@@ -1,9 +1,13 @@
 ---
+
 title: "Redis"
+
+date: 2024-02-12
 
 ---
 
 ![](/media/202303/2023-03-10_150708_7948300.14238269035577744.png)
+
 # 简介
 Redis 通常被称为数据结构服务器，因为值（value）可以是字符串(String)、哈希(Hash)、列表(list)、集合(sets)和有序集合(sorted sets)等类型。
 
@@ -13,6 +17,47 @@ Redis 通常被称为数据结构服务器，因为值（value）可以是字符
 - 丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。
 - 原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。
 - 丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。
+
+
+# 安装
+
+## 服务端安装
+
+> 下载地址: [redis](https://redis.io/download/)
+
+### 编译安装
+
+```shell
+tar -xzvf redis-stable.tar.gz
+cd redis-stable
+make
+make install
+```
+
+如果编译成功，您将在src目录中找到几个Redis二进制文件，包括：
+
+- redis-server：Redis 服务器本身
+- redis-cli是与 Redis 交互的命令行界面实用程序。
+
+```shell
+whereis redis-server	# 查看安装路径
+```
+
+### Docker 部署
+
+```shell
+docker pull redis
+docker run --name my-redis-container -d redis
+```
+
+这将在 Docker 中创建一个名为 `my-redis-container` 的Redis容器并在后台运行。
+
+
+现在，您可以使用Redis客户端连接到容器并开始使用Redis。运行以下命令以连接到Redis容器：
+
+```shell
+docker exec -it my-redis-container redis-cli
+```
 
 # 配置文件
 
