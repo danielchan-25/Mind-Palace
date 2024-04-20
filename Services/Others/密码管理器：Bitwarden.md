@@ -71,7 +71,7 @@ chmod +x mkcert-v1.4.4-linux-amd64
 
 ## 客户端安装
 
-以 iPhone 为例，我需要使用 `Bitwarden` 客户端，按以下步骤操作：
+### iPhone
 
 1. 安装证书
    1. 在 Files 中打开 rootCA.pem 文件，显示什么不用管，直接下一步。
@@ -86,3 +86,14 @@ chmod +x mkcert-v1.4.4-linux-amd64
       1. Server URL 填写服务端的信息，如：`https://localhost:8443`，点击 Save 保存。
       2. 输入 Email address，点击 Continue，输入密码，点击 Log in
       3. 成功。
+
+### MacOS
+
+1. 安装证书
+   1. 打开：`keychain Access.app` 
+   2. 选择 `login` ，将证书添加至 `Certificates` 
+   3. 点击证书，选择 `Get Info` 
+   4. 将 `Trust` 中的所有选项调整为：`Always Trust`
+   5. 保存退出。
+2. 登录
+   1. 与 `iPhone` 的登录步骤一致。
