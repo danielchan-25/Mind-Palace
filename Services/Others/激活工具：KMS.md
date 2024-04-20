@@ -1,5 +1,10 @@
-# KMS
-## 简介
+---
+title: 激活工具：KMS
+date: 2023-04-15
+
+---
+
+# 简介
 KMS的意思是：知识管理系统。全称是：Key Management Service
 
 这个功能是在Windows Vista之后的产品中的一种新型产品激活机制，目的是为了Microsoft更好的遏制非法软件授权行为(盗版)。
@@ -8,7 +13,7 @@ KMS的意思是：知识管理系统。全称是：Key Management Service
 
 可以在内网部署KMS服务，以达到计算机保持与KMS服务器的定期连接。
 
-## 部署
+# 部署
 使用 `docker-compose` 部署：
 ```yml
 version: '2.9.0'
@@ -24,7 +29,7 @@ services:
 使用命令：`docker-compose up -d` 启动即可。
 
 
-## 使用方法
+# 使用方法
 
 以激活 Windows 为例：
 
