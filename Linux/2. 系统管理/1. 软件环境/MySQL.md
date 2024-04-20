@@ -124,7 +124,22 @@ bind-address = 0.0.0.0
 service mysql restart
 ```
 
+#### MacOS
+
+1. 使用 `brew` 安装。
+
+   ```shell
+   brew install mysql@5.7
+   ```
+
+2. 启动：
+
+   ```shell
+   brew services start mysql@5.7
+   ```
+
 ### 服务端包管理安装
+
 #### yum
 
 ```shell
