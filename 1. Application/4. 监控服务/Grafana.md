@@ -1,11 +1,16 @@
-# Grafana
-## 部署
+---
+title: "Grafana"
+date: 2024-04-11
 
-**CentOS**
+---
+
+# 服务端安装
+
+## CentOS
 
 下载安装包，安装
 
-```sh
+```shell
 wget https://dl.grafana.com/oss/release/grafana-5.4.3-1.x86_64.rpm
 yum localinstall grafana-5.4.3-1.x86_64.rpm
 systemctl enable --now grafana-server
@@ -22,7 +27,9 @@ grafana-cli plugins install grafana-piechart-panel
 
 ## 启动默认账号密码：admin
 ```
-**Ubuntu**
+
+
+## Ubuntu
 
 ```shell
 # Ubuntu
