@@ -29,8 +29,23 @@ services:
     volumes:
       - "~/bitwarden/:/data/"
     ports:
-      - "443:80"
+      - "80:80"
 ```
+
+```yml
+version: '3.0'
+services:
+  bitwardens:
+    image: docker.io/vaultwarden/server:latest
+    container_name: vaultwarden
+    network_mode: bridge
+    restart: always
+    volumes:
+      - "~/valutwarden/:/data/"
+    ports:
+      - "80:80"
+```
+
 
 启动容器
 
@@ -38,7 +53,7 @@ services:
 docker-compose -f bitwarden.yml up -d
 ```
 
-访问：`http://localhost:443` 
+访问：`http://localhost` 
 
 # 反向代理
 
@@ -61,7 +76,7 @@ server {
         proxy_set_header X-Real-IP $remote_addr; 
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
         proxy_set_header X-Forwarded-Proto $scheme; 
-        proxy_pass    http://localhost:443;  # Bitwarden 的地址
+        proxy_pass    http://localhost;  # Bitwarden 的地址
     }
 }
 ```
