@@ -13,7 +13,7 @@ date: 2024-04-17
 ```shell
 docker run -d --name bitwarden \
 -v ~/bitwarden/:/data/ \
--p 80:80 bitwardenrs/server
+-p 8080:80 bitwardenrs/server
 ```
 
 ## Docker-Compose 部署
@@ -31,7 +31,7 @@ services:
     volumes:
       - "~/bitwarden/:/data/"
     ports:
-      - "80:80"
+      - "8080:80"
 ```
 
 ```yml
@@ -47,7 +47,7 @@ services:
     volumes:
       - "~/valutwarden/:/data/"
     ports:
-      - "80:80"
+      - "8080:80"
 ```
 
 
@@ -57,9 +57,9 @@ services:
 docker-compose -f bitwarden.yml up -d
 ```
 
-访问：`http://localhost` 
+访问：`http://localhost:8080` 
 
-后台管理页面：`http://localhost/admin`
+后台管理页面：`http://localhost:8080/admin`
 
 # 配置
 
@@ -76,24 +76,32 @@ docker-compose -f bitwarden.yml up -d
 以下是 `Nginx` 的配置文件：
 
 ```nginx
-server {
-    listen    443 ssl;
-    server_name  localhost;
+http {
+        ssl_certificate cert/domain.com.pem;  # 证书文件
+        ssl_certificate_key cert/domain.com.key;  # 证书文件
+        ssl_session_cache shared:SSL:1m;
+        ssl_session_timeout 5m;
+        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+        ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
+        ssl_prefer_server_ciphers on;
 
-    ssl_certificate bitwarden.crt;
-    ssl_certificate_key bitwarden.key;
-    ssl_session_timeout 5m;
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
-    ssl_prefer_server_ciphers on;
-    
-    location / {
-        proxy_set_header Host $host; 
-        proxy_set_header X-Real-IP $remote_addr; 
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
-        proxy_set_header X-Forwarded-Proto $scheme; 
-        proxy_pass    http://localhost;  # Bitwarden 的地址
-    }
+        server {
+                listen 443 ssl;
+                listen [::]:443 ssl;
+
+                server_name domain.com;
+
+                location / {
+                        proxy_pass      http://127.0.0.1:8080;
+                        proxy_http_version 1.1;
+                        proxy_set_header Upgrade $http_upgrade;
+                        proxy_set_header Connection "upgrade";
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_set_header X-Forwarded-Proto $scheme;
+                }
+        }
 }
 ```
 
