@@ -1,5 +1,6 @@
 ---
 title: "Docker"
+date: 2024-04-27
 
 ---
 
@@ -28,6 +29,23 @@ Docker 的镜像（Image）和容器（Container）是两个关键概念：
 
 
 # 使用
+
+## 修改镜像源
+
+新建文件：`/etc/docker/daemon.json`
+
+```json
+{
+  "registry-mirrors": [
+    "https://cr.console.aliyun.com",  # 阿里云镜像源
+    "https://mirror.ccs.tencentyun.com",  # 腾讯镜像源
+    "http://hub-mirror.c.163.com",  # 163镜像源
+    "https://registry.docker-cn.com"  # 中国区官方镜像
+  ]
+}
+```
+
+修改完成后重启生效：`systemctl restart docker`
 
 ## 镜像
 
