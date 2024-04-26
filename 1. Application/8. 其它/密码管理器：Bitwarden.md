@@ -26,6 +26,8 @@ services:
     container_name: bitwarden
     network_mode: bridge
     restart: always
+    environment:
+      - ADMIN_TOKEN=XXXXXXXXX
     volumes:
       - "~/bitwarden/:/data/"
     ports:
@@ -40,6 +42,8 @@ services:
     container_name: vaultwarden
     network_mode: bridge
     restart: always
+    environment:
+      - ADMIN_TOKEN=XXXXXXXXX
     volumes:
       - "~/valutwarden/:/data/"
     ports:
@@ -55,7 +59,11 @@ docker-compose -f bitwarden.yml up -d
 
 访问：`http://localhost` 
 
+后台管理页面：`http://localhost/admin`
+
 # 反向代理
+
+因 `Bitwarden` 安全需要，必须使用SSL方式访问。
 
 以下是 `Nginx` 的配置文件：
 
