@@ -61,6 +61,14 @@ docker-compose -f bitwarden.yml up -d
 
 后台管理页面：`http://localhost/admin`
 
+# 配置
+
+进入后台管理页面后，可参考以下网页进行配置：
+
+[Vaultwarden Wiki 中文版](https://rs.ppgg.in)
+
+[Bitwarden 部署和使用](https://host.ppgg.in)
+
 # 反向代理
 
 因 `Bitwarden` 安全需要，必须使用SSL方式访问。
