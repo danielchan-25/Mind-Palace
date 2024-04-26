@@ -37,10 +37,10 @@ Docker 的镜像（Image）和容器（Container）是两个关键概念：
 ```json
 {
   "registry-mirrors": [
-    "https://cr.console.aliyun.com",  # 阿里云镜像源
-    "https://mirror.ccs.tencentyun.com",  # 腾讯镜像源
-    "http://hub-mirror.c.163.com",  # 163镜像源
-    "https://registry.docker-cn.com"  # 中国区官方镜像
+    "https://cr.console.aliyun.com",
+    "https://mirror.ccs.tencentyun.com",
+    "http://hub-mirror.c.163.com",
+    "https://docker.mirrors.ustc.edu.cn"
   ]
 }
 ```
