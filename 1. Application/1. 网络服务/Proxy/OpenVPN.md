@@ -12,7 +12,9 @@ date: 2024-04-20
 由于太复杂导致安装失败，故放弃
 
 ## 一键部署
-Github: [openvpn](https://github.com/Nyr/openvpn-install)
+- Github: [openvpn-install](https://github.com/Nyr/openvpn-install): *不支持 `Ubuntu20.04`*
+
+- Github: [openvpn-install](https://github.com/hwdsl2/openvpn-install): *支持多个平台*
 
 ```shell
 root@cc-ubuntu:/opt# bash Install-OpenVPN.sh
