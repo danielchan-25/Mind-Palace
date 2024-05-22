@@ -73,6 +73,12 @@ PasswordAuthentication no     # 禁止密码认证
 PermitEmptyPasswords no     # 禁止空密码用户登录
 ```
 
+- `PermitRootLogin`：控制是否允许使用 `root` 用户通过 SSH 登录到服务器，有以下选项：
+  - `yes`：允许 `root` 用户通过 SSH 登录
+  - `no`：禁止 `root` 用户通过 SSH 登录
+  - `without-password` ：允许 `root` 用户通过 SSH 登录，但仅限于使用公钥
+  - `prohibit-password`：禁止 `root` 用户使用密码登录，但允许使用其它认证方式，与 `without-password` 类似
+
 ## 设置连续错误登录后冻结
 
 - 终端窗口登录：`/etc/pam.d/login`
@@ -102,4 +108,3 @@ pam_tally2 --user 用户名
 pam_tally2 --user 用户名 --reset
 例：sudo pam_tally2 --user root --reset
 ```
-
