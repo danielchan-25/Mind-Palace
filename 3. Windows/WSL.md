@@ -24,8 +24,10 @@ wsl.exe --install -d Ubuntu-22.04  # 安装 Ubuntu22.04
 ```
 
 
-# 异常处理
 
+# 其它
+
+## 安装报错
 - `WslRegisterDistribution failed with error: 0x800701bc`
 
 更新 WSL2：[https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
@@ -33,3 +35,12 @@ wsl.exe --install -d Ubuntu-22.04  # 安装 Ubuntu22.04
 - `0x80370102`
 
 使用 PowerShell 管理员执行以下命令后重启：`bcdedit /set hypervisorlaunchtype auto`
+
+## 迁移
+
+```powershell
+wsl --export Ubuntu-22.04 D:\wsl\Ubuntu-22.04.tar  # 导出镜像
+wsl --unregister Ubuntu-22.04  # 注销现有的发行版
+wsl --import Ubuntu-22.04 D:\wsl\Ubuntu-22.04 D:\wsl\Ubuntu-22.04.tar --version 2  # 在新位置导入发行版
+wsl -d Ubuntu-22.04  # 启动
+```
