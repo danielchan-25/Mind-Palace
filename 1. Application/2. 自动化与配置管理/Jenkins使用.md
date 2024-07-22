@@ -24,7 +24,12 @@
 ![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/Jenkins-1.png)
 ![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/Jenkins-2.png)
 
-依次填写信息即可，保存后查看日志是否正常。
+- Remote root directory：填写 Windows 上的 Jenkins 目录，例如：E:\jenkins
+- Labels：标签，可以填入 windows，方便指定某个流水线单独调用
+- Usage：选 Only build jobs with label expressions matching this node
+- Launch method：Launch agents via SSH，随后在下方填入 Windows 服务器的账号密码
+
+依次填写信息即可，保存后，返回 Status 页面，提供了节点连接服务器的方式，在 Windows 上输入命令即可。
 
 
 # 其它
