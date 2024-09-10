@@ -10,6 +10,13 @@ NextCloud 需要依赖以下环境：
 
 建议使用：`Ubuntu 20.04 LTS` + `MySQL 8.0+` + `Nginx` + `PHP 8.2`
 
+# 简介
+Nextcloud是一种自由开源的协作平台和云存储解决方案。它允许用户在他们自己的服务器上存储、同步和共享文件、日历、联系人、音乐、图片和视频等信息。Nextcloud可以被用作企业级的云存储服务，也可以被个人用来管理他们的数据。
+
+Nextcloud提供了许多功能，如文件共享、协作、版本控制、文档编辑、视频会议、加密和备份等。它还支持在各种设备和平台上的访问，包括Web浏览器、移动应用程序和桌面客户端。Nextcloud也有一个广泛的插件生态系统，用户可以利用插件来扩展其功能。
+
+由于Nextcloud是自由开源软件，因此任何人都可以查看和修改其源代码，从而使其更适合他们的需求。这也意味着Nextcloud可以自由地在任何地方使用，而不需要向第三方提供数据。
+
 # 安装
 
 ## All-In-One
@@ -30,7 +37,163 @@ docker run  \
 -d 8bd17975f256
 ```
 
+或者直接使用 Docker 部署一个 MySQL 服务器：
+
+```shell
+docker run -d --name nextcloud-mariadb \
+    -e MYSQL_ROOT_PASSWORD=your_password \
+    -e MYSQL_DATABASE=nextcloud \
+    -e MYSQL_USER=nextcloud \
+    -e MYSQL_PASSWORD=your_password \
+    --restart always \
+    mariadb:latest \
+    --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+   
+# 启动时指向 MySQL 服务器
+docker run -d --name nextcloud \
+    -p 8080:80 \
+    --link nextcloud-mariadb:mariadb \
+    -v /your/nextcloud/data:/var/www/html \
+    --restart always \
+    nextcloud:latest
+```
+
+## Docker-Compose
+
+在本地计算机上创建一个名为 `docker-compose.yml` 的文件，并将以下内容复制到文件中。
+
+```yml
+version: '3'
+
+services:
+  db:
+    image: mariadb
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=your_password
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=your_password
+
+  app:
+    image: nextcloud:fpm
+    links:
+      - db
+    restart: always
+    volumes:
+      - nextcloud:/var/www/html
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=your_password
+
+  web:
+    image: nginx
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - nextcloud:/var/www/html:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+
+volumes:
+  db:
+  nextcloud:
+```
+
+*请注意替换your_password为您自己的密码。*
+
+#### 创建 nginx 配置文件
+
+在与 `docker-compose.yml` 文件相同的目录中，创建一个名为 `nginx.conf` 的文件，并将以下内容复制到文件中。
+
+```yml
+user  nginx;
+worker_processes  auto;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+events {
+  worker_connections  1024;
+}
+
+http {
+  include       /etc/nginx/mime.types;
+  default_type  application/octet-stream;
+
+  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
+
+  access_log  /var/log/nginx/access.log  main;
+
+  sendfile        on;
+  #tcp_nopush     on;
+
+  keepalive_timeout  65;
+
+  #gzip  on;
+
+  upstream php-handler {
+    server app:9000;
+  }
+
+  server {
+    listen 80;
+    server_name localhost;
+
+    # Add headers to serve security related headers
+    add_header X-Content-Type-Options nosniff;
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Robots-Tag none;
+    add_header X-Download-Options noopen;
+    add_header X-Permitted-Cross-Domain-Policies none;
+    add_header Referrer-Policy no-referrer;
+
+    # Path to the root of your installation
+    root /var/www/html;
+
+    location = /robots.txt {
+      allow all;
+      log_not_found off;
+      access_log off;
+    }
+
+    # The following 2 rules are only needed for the user_webfinger app.
+    # Uncomment it if you're planning to use this app.
+    #rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+    #rewrite ^/.
+```
+
+## 源码部署
+
+> 下载地址：https://download.nextcloud.com/server/releases/latest.zip
+
+部署前提：需安装 Web服务器，以及 PHP
+
+将源码包解压后放在 Web服务器 的 `html/` 目录下，然后访问该源码包的 `index.php` 即可提示安装。
+
+### 使用说明
+
+在浏览器中访问：`http://your_server_ip:8080`
+
+其中your_server_ip是您的服务器IP地址。
+
+您将被重定向到Nextcloud的安装页面。根据提示完成安装即可。
+
+请注意，在生产环境中，应采取适当的安全措施，如使用HTTPS加密通信，并保护数据库和数据存储的访问。
+
+因自带中文界面，且上手容易，所以没有什么使用说明，上手即用。
+
 ## 开启日志
+
 修改 `/var/www/html/nextcloud/config/config.php` 文件：
 ```php
 <?php
