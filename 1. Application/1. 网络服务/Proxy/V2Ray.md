@@ -4,9 +4,10 @@ date: 2024-04-20
 
 ---
 
+# 服务端
+
 > Github: [V2ray](https://github.com/v2ray/dist)
 
-# 客户端
 
 以 `Ubuntu20.04-server` 版本为例。
 
