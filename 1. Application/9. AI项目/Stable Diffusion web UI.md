@@ -212,6 +212,28 @@ python launch.py --nowebui
 
 可以先下载该项目，然后放进服务器中的：`/home/painer/stable-diffusion-webui/extensions` 目录中，然后再按说明加载扩展即可。
 
+## ControlNet
+
+> 插件地址：https://github.com/Mikubill/sd-webui-controlnet
+> 1.1版本模型下载：https://huggingface.co/lllyasviel/ControlNet-v1-1/tree/main
+> 1.4版本模型下载：https://huggingface.co/lllyasviel/sd_control_collection/tree/main
+> 预处理器下载：https://huggingface.co/lllyasviel/Annotators/tree/main
+> 模型介绍：https://github.com/lllyasviel/ControlNet-v1-1-nightly
+> 使用说明：https://nenly.notion.site/10-ControlNet-a802ab59c48d45f8ae4ad1cfea0a0d4d
+> 使用说明：https://www.bilibili.com/video/BV1Ds4y1e7ZB/?spm_id_from=333.337.search-card.all.click&vd_source=1cd924c6aa366e469705bc691a5cba2b
+
+扩展 -> 从网址安装 -> 扩展的Github仓库网址： https://github.com/Mikubill/sd-webui-controlnet.git
+
+- 模型放置路径：`stable-diffusion-webui\extensions\sd-webui-controlnet\models` / `stable-diffusion-webui\models\ControlNet`
+
+- 预处理器下载后放在：`stable-diffusion-webui\extensions\sd-webui-controlnet\annotator\downloads`
+
+![](https://github.com/danielchan-25/Mind-Palace/blob/main/1.%20Application/99.%20img/stablediffusionwebui-controlnet.png)
+
+## 换脸插件
+
+> https://github.com/s0md3v/sd-webui-roop
+
 # 使用说明
 ## 常用参数
 `Clip Skip`
