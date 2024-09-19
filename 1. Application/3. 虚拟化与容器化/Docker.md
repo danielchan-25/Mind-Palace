@@ -139,6 +139,15 @@ docker logs '容器ID' -f
 ```
 
 # 其它
+
+## 修改已有容器的共享内存
+
+1. 查询需要修改的 `CONTAINER ID` ：`docker ps`
+
+2. 关闭 Docker，进入：`/var/lib/docker/containers` 目录，找到对应 `CONTAINER ID` 的目录，修改 `hostconfig.json` 中：`ShmSize` 的值，符号是字节(B)
+
+3. 修改完成后重启 Docker 即可
+
 ## 当容器无法启动，如何修改容器的配置文件？
 > https://blog.csdn.net/weixin_40881502/article/details/106294110
 
