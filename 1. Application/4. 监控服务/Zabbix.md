@@ -222,17 +222,6 @@ Timeout=3
 克隆一个 `temple os linux` 模版来修改
 
 
-
-
-
-
-
-
-
-
-
-
-
 # 4. 监控项
 
 ## 4.1 自定义监控
@@ -317,7 +306,25 @@ UserParameter=server_alive,/usr/bin/date +%s
 UserParameter=get_temperature_cpu,/usr/bin/sensors|grep 'Core 0'|cut -c 16-19|awk 'NR==1'
 ```
 
-### 4.4 Windows 下 Python 进程监控
+### 4.4 Windows 进程监控
+
+1. 先找到需要监控的进程名称，可以使用 `WMIC` / `tasklist` 命令查询，以`frpc.exe` 为例。
+2. 在 Zabbix 服务端添加监控
+   1. 主机 -> 监控项 -> 键值输入：`proc.num[frpc.exe]`
+   2. 信息类型：数字（无正负）
+   3. 点击测试查看结果是否是 1（运行）/0（退出），确认无误添加。
+3. 添加触发器：表达式中选择监控项，然后默认即可。
+
+
+
+**特殊情况：**
+
+```powershell
+python.exe run.py
+java.exe run.jar
+```
+
+像以上的类似情况，需要监控 `python.exe` 是否在运行 `run.py`，就要使用以下方法：
 
 > https://blog.csdn.net/weixin_43631631/article/details/105575412
 
