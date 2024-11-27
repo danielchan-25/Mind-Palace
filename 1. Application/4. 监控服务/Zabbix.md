@@ -317,6 +317,42 @@ UserParameter=server_alive,/usr/bin/date +%s
 UserParameter=get_temperature_cpu,/usr/bin/sensors|grep 'Core 0'|cut -c 16-19|awk 'NR==1'
 ```
 
+### 4.4 Windows 下 Python 进程监控
+
+> https://blog.csdn.net/weixin_43631631/article/details/105575412
+
+1. 在 `CMD` 中使用以下命令，尝试是否能正常获取
+
+   ```powershell
+   wmic process where name="python.exe" |findstr "进程名称"
+   ```
+
+2. 在客户端的 `zabbix.conf` 文件添加以下内容
+
+   ```ini
+   UserParameter=监控键值, WMIC.exe process where name="python.exe" | findstr "监控名称"
+   ```
+
+   重启客户端。
+
+3. 服务端添加 **监控项** ：
+
+   - 键值：`zabbix.conf` 中添加的监控键值
+
+   - 信息类型：字符
+
+     记得最后输入客户端的地址测试一下，查看是否正常。
+
+4. 服务端添加 **触发器**：
+
+   - 表达式：
+     - 监控项：选择上面添加的
+     - 功能：str()
+     - V：监控名称，不用整行都写
+     - 结果：=0则无，表示进程停止；反之=1表示进程运行
+
+5. 测试。
+
 # 5. 触发器
 
 # 6. 动作
@@ -371,6 +407,7 @@ UserParameter=get_temperature_cpu,/usr/bin/sensors|grep 'Core 0'|cut -c 16-19|aw
 当前的问题是: {TRIGGER.NAME}
 }
 ```
+
 
 # 7. 告警媒介
 
