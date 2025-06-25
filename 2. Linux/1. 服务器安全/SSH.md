@@ -67,10 +67,13 @@ ALL:192.168.1.1
 ```ini
 PermitRootLogin no    # 禁止以root用户身份通过 SSH 登录
 LogLevel INFO        # 将LogLevel设置为INFO,记录登录和注销活动
-MaxAuthTries 3        # 限制单次登录会话的最大身份验证尝试次数
+MaxAuthTries 3        # 限制SSH登录最大尝试次数，超过次数自动断开连接，防止暴力破解
 LoginGraceTime 20    # 缩短单次的登录宽限期，即ssh登录必须完成身份验证的时间 单位是秒
 PasswordAuthentication no     # 禁止密码认证
 PermitEmptyPasswords no     # 禁止空密码用户登录
+
+ClientAliveInterval 600  # 600秒内没有收到客户端响应时发起两次探测，自动断开SSH
+ClientAliveCountMax 2
 ```
 
 - `PermitRootLogin`：控制是否允许使用 `root` 用户通过 SSH 登录到服务器，有以下选项：
@@ -78,6 +81,17 @@ PermitEmptyPasswords no     # 禁止空密码用户登录
   - `no`：禁止 `root` 用户通过 SSH 登录
   - `without-password` ：允许 `root` 用户通过 SSH 登录，但仅限于使用公钥
   - `prohibit-password`：禁止 `root` 用户使用密码登录，但允许使用其它认证方式，与 `without-password` 类似
+
+
+## 密码
+
+修改配置文件：`/etc/login.defs`
+
+```ini
+PASS_MIN_DAYS 7  # 设置密码修改最小间隔时间，使用 chage --mindays 7 root
+PASS_MAX_DAYS 90  # 设置密码失效时间，使用 chage --maxdays 90 root
+PASS_WARN_AGE 7  # 密码到期警告天数，使用 chage --warndays 7 root
+```
 
 ## 设置连续错误登录后冻结
 
