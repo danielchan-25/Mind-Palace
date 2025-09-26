@@ -72,6 +72,20 @@ docker ps [option]
 -s :显示总的文件大小。
 ```
 
+### 创建容器
+
+```shell
+docker run -it --name test \
+	--privileged \
+	-p 12000:22 \
+    -p 12001-12100:12001-12100 \
+	-v /data/docker-compose/test:/root \
+    --gpus=all \
+    -d ubuntu:22.04
+```
+
+> 注意：需要添加 --privileged，否则无法通过 apt update 等更新
+
 ### 备份容器
 
 ```shell
